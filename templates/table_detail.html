@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQLite Editor - {{table_name}}</title>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 2rem; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        h1 { color: #333; margin-bottom: 0.5rem; }
+        .card { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 1.5rem; }
+        h2 { color: #555; margin-bottom: 1rem; }
+        .form-row { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap; align-items: center; }
+        input[type="text"] { padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem; }
+        select { padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.9rem; }
+        button, .btn { padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem; font-weight: 600; text-decoration: none; display: inline-block; }
+        .btn-primary { background: #2563eb; color: white; }
+        .btn-primary:hover { background: #1d4ed8; }
+        .btn-danger { background: #dc2626; color: white; }
+        .btn-danger:hover { background: #b91c1c; }
+        .btn-secondary { background: #6b7280; color: white; }
+        .btn-secondary:hover { background: #4b5563; }
+        .btn-sm { padding: 0.25rem 0.5rem; font-size: 0.8rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f9fafb; font-weight: 600; color: #555; }
+        .error { color: #dc2626; padding: 0.75rem; background: #fef2f2; border: 1px solid #fecaca; border-radius: 4px; margin-bottom: 1rem; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .breadcrumb { color: #999; margin-bottom: 0.5rem; }
+        .breadcrumb a { color: #2563eb; text-decoration: none; }
+        .empty { color: #999; padding: 2rem; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb"><a href="/tables">Tables</a> / {{table_name}}</div>
+        <div class="header">
+            <h1>{{table_name}}</h1>
+            <a href="/tables" class="btn btn-secondary">Back to Tables</a>
+        </div>
+
+        <div id="table-detail">
+            <div class="card">
+                <h2>Columns</h2>
+                <form hx-post="/api/tables/{{table_name}}/columns" hx-target="#table-detail" hx-swap="innerHTML">
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Column name" required>
+                        <select name="col_type">
+                            <option value="TEXT">TEXT</option>
+                            <option value="INTEGER">INTEGER</option>
+                            <option value="REAL">REAL</option>
+                            <option value="BLOB">BLOB</option>
+                            <option value="NUMERIC">NUMERIC</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">Add Column</button>
+                    </div>
+                </form>
+                {{columns_html}}
+            </div>
+
+            <div class="card">
+                <h2>Data</h2>
+                {{rows_html}}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
