@@ -1,0 +1,21 @@
+<div class="card">
+    <h2>Columns</h2>
+    <form hx-post="/api/tables/{{table_name}}/columns" hx-target="#table-detail" hx-swap="innerHTML">
+        <div class="form-row">
+            <input type="text" name="name" placeholder="Column name" required>
+            <select name="col_type">
+                <option value="TEXT">TEXT</option>
+                <option value="INTEGER">INTEGER</option>
+                <option value="REAL">REAL</option>
+                <option value="BLOB">BLOB</option>
+                <option value="NUMERIC">NUMERIC</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Add Column</button>
+        </div>
+    </form>
+    {{columns_html}}
+</div>
+<div class="card">
+    <h2>Data</h2>
+    {{rows_html}}
+</div>
