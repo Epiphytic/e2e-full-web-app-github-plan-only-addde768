@@ -1,0 +1,91 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
+*.pdb
+
+# Keys, credentials, and certificates
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.jks
+certs/
+keys/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Log files
+*.log
+logs/
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Node.js dependencies
+node_modules/
+package-lock.json
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# OS files - macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+Icon?
+
+# OS files - Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# OS files - Linux
+*~
+.directory
+.Trash-*
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*~
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
+.atom/
+*.code-workspace
+*.iml
+
+# Fork-join directories
+.fork-join/
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+*.rej
+
+# Keep .gitkeep files
+!.gitkeep
