@@ -10,7 +10,6 @@ release/
 
 # Rust
 **/*.rs.bk
-Cargo.lock
 
 # Keys and credentials
 *.pem
@@ -30,7 +29,6 @@ keys/
 
 # Dependencies
 node_modules/
-package-lock.json
 
 # IDE / Editor files
 .idea/
